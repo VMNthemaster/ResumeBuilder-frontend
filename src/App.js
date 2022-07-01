@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import React from 'react'
+import Header from './components/Header'
+import { Route, Routes } from 'react-router-dom'
+import Resumes from './components/Resumes'
+import Login from './components/Login'
+import Signin from './components/Signin'
+import Animation from './components/Animation'
+import { useSelector } from 'react-redux'
+import CompleteResume from './components/CompleteResume'
+import CreateResume from './components/CreateResume'
 
 function App() {
+  const isNotLoggedIn = useSelector((state) => state.auth)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <React.Fragment>
+      <header>
+        <Header />
       </header>
-    </div>
-  );
+      <main>
+        <Routes>
+          <Route path="/" element={<Animation />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signin" element={<Signin />} />
+          {!isNotLoggedIn && (
+            <>
+              <Route path="/resumes" element={<Resumes />} />
+              <Route path="/resumes/:resumeId" element={<CompleteResume />} />
+              <Route path="/resumes/create" element={<CreateResume />} />
+            </>
+          )}
+        </Routes>
+      </main>
+    </React.Fragment>
+  )
 }
 
-export default App;
+export default App
