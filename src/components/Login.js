@@ -7,8 +7,8 @@ import {actionCreators} from '../state/index'
 import { useDispatch } from 'react-redux'
 
 const Login = () => {
-  const dispatch = useDispatch()
-  const {login} = bindActionCreators(actionCreators, dispatch)
+  const dispatch = useDispatch() 
+  const {login, setResumeUserId} = bindActionCreators(actionCreators, dispatch)
   const navigate = useNavigate()
   const [inputs, setInputs] = useState({
     email: '',
@@ -48,12 +48,13 @@ const Login = () => {
       } else if (data === 500) {
         setLoginError('Server Error, try again later')
       } else {
-        const resumeUserId = data.credentials._id
-        sessionStorage.setItem('resumeUserId', resumeUserId)
+        const id = data.credentials._id
+        setResumeUserId(id)
+        // sessionStorage.setItem('resumeUserId', resumeUserId)
         login()
         navigate('/resumes')
       }
-    })
+    }) 
   }
 
   return (
@@ -96,7 +97,7 @@ const Login = () => {
             />
           </div>
           <div className="flex flex-col justify-center items-center">
-            <button className="w-[12vw] px-[0.5vw] py-[0.75vh] border-2 border-black rounded-md text-xl bg-gradient-to-r from-blue-300 to-blue-500 hover:bg-gradient-to-l">
+            <button className="w-[12vw] px-[0.5vw] py-[0.75vh] border-2 border-black rounded-md text-xl bg-gradient-to-r from-blue-300 to-blue-500 hover:bg-gradient-to-l zoom-reverse">
               Login
             </button>
             <h1 className="fonts text-xl mt-[0.5vh]">

@@ -15,11 +15,13 @@ import {
 } from 'react-icons/fa'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const CompleteResumeLayout = (props) => {
   const navigate = useNavigate()
   const details = props.info
-  const resumeUserId = sessionStorage.getItem('resumeUserId')
+  // const resumeUserId = sessionStorage.getItem('resumeUserId')
+  const resumeUserId = useSelector((state) => state.resumeUserId)
   const [isClicked, setIsClicked] = useState(false)
 
   const collegeTo = new Date(
@@ -61,13 +63,12 @@ const CompleteResumeLayout = (props) => {
   }
 
   const handleDelete = async () => {
-    sendRequestToBackend().then(data => {
-      if(data === 500){
-        console.log("Internal server error")
+    sendRequestToBackend().then((data) => {
+      if (data === 500) {
+        console.log('Internal server error')
         navigate(`/resumes/${details._id}`)
-      }
-      else{
-        console.log("successfully deleted resume")
+      } else {
+        console.log('successfully deleted resume')
         navigate('/resumes')
       }
     })
@@ -78,18 +79,25 @@ const CompleteResumeLayout = (props) => {
       <div className="flex flex-col relative">
         {details.by === resumeUserId && (
           <>
-          <div
-            onClick={() => {
-              setIsClicked(prev=>!prev)
-            }}
-            className="flex flex-col absolute -top-[1vh] right-[0.75vw] cursor-pointer"
-          >
-            <h1 className="text-white text-xl font-bold h-[0.5vw]">.</h1>
-            <h1 className="text-white text-xl font-bold h-[0.5vw]">.</h1>
-            <h1 className="text-white text-xl font-bold h-[0.5vw]">.</h1>
-          </div>
-            <h1 onClick={handleDelete} className={`${isClicked ? "" : "displayNone"} text-black bg-gray-100  px-[0.3vw] py-[0.3vh] rounded-sm text-xl absolute top-[0.75vh] -right-[8.75vw] cursor-pointer fonts`}>Delete Resume</h1>
-            </>
+            <div
+              onClick={() => {
+                setIsClicked((prev) => !prev)
+              }}
+              className="flex flex-col absolute -top-[1vh] right-[0.75vw] cursor-pointer"
+            >
+              <h1 className="text-white text-xl font-bold h-[0.5vw]">.</h1>
+              <h1 className="text-white text-xl font-bold h-[0.5vw]">.</h1>
+              <h1 className="text-white text-xl font-bold h-[0.5vw]">.</h1>
+            </div>
+            <h1
+              onClick={handleDelete}
+              className={`${
+                isClicked ? '' : 'displayNone'
+              } text-black bg-gray-100  px-[0.3vw] py-[0.3vh] rounded-sm text-xl absolute top-[0.75vh] -right-[8.75vw] cursor-pointer fonts`}
+            >
+              Delete Resume
+            </h1>
+          </>
         )}
         {/*  */}
         <div className="resume-header flex justify-between pt-[4.5vh] pb-[1.5vh] px-[2vw]  bg-[#31334e]">

@@ -23,7 +23,7 @@ const ShortResumes = (props) => {
           </h1>
         </div>
         <div className="flex flex-col sm:w-[50vw] md:w-[33vw] gap-y-2">
-          <div className="flex flex-row ">
+          <div className="flex flex-row-reverse ">
             {skills[0] && (
               <div className="flex justify-center items-center md:w-[15vw] h-[7.5vh] mx-[1vw] rounded-md bg-slate-500/75">
                 <h1 className="fonts text-white">{skills[0]}</h1>

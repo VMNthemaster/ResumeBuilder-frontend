@@ -13,3 +13,20 @@ export const logout = () => {
     })
   }
 }
+
+export const getResumeUserId = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'getResumeUserId'
+    })
+  }
+}
+
+export const setResumeUserId = (id) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'setResumeUserId',
+      payload: id
+    })
+  }
+}

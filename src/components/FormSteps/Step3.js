@@ -176,7 +176,6 @@ const Step3 = (props) => {
     })
   }
 
-
   return (
     <>
       <div
@@ -202,7 +201,7 @@ const Step3 = (props) => {
             name="projectLink1"
             value={projectInputs.projectLink1}
             type="text"
-            className="w-[25vw] h-[5vh] px-[0.7vw] rounded-md outline-none text-xl border-2 border-black fonts placeholder-gray-900"
+            className="w-[25vw] h-[5vh] px-[0.7vw] rounded-md outline-none text-xl border-2 border-black fonts placeholder-gray-900 "
             placeholder="Project Link"
           />
         </div>
@@ -218,9 +217,9 @@ const Step3 = (props) => {
             onClick={() => {
               addProject()
             }}
-            className={`w-[3vw] h-[4vh] border-2 border-black flex flex-row justify-center items-center pb-[0.5vh] rounded-md cursor-pointer`}
+            className={`w-[3vw] h-[4vh] border-2 border-black flex flex-row justify-center items-center pb-[0.5vh] rounded-md cursor-pointer bg-indigo-500 zoom-reverse`}
           >
-            <h1 className="text-2xl">+</h1>
+            <h1 className="text-2xl text-white font-bold">+</h1>
           </div>
         </div>
         {newProjects.length > 0 &&
@@ -271,9 +270,9 @@ const Step3 = (props) => {
             onClick={() => {
               addExperirence()
             }}
-            className={`w-[3vw] h-[4vh] border-2 border-black flex flex-row justify-center items-center pb-[0.5vh] rounded-md cursor-pointer`}
+            className={`w-[3vw] h-[4vh] border-2 border-black flex flex-row justify-center items-center pb-[0.5vh] rounded-md cursor-pointer bg-indigo-500 zoom-reverse`}
           >
-            <h1 className="text-2xl">+</h1>
+            <h1 className="text-2xl text-white font-bold">+</h1>
           </div>
         </div>
         {newExp.length > 0 &&
@@ -303,9 +302,9 @@ const Step3 = (props) => {
             onClick={() => {
               addSkill()
             }}
-            className={`w-[3vw] mr-auto h-[4vh] border-2 border-black flex flex-row justify-center items-center pb-[0.5vh] rounded-md cursor-pointer`}
+            className={`w-[3vw] mr-auto h-[4vh] border-2 border-black flex flex-row justify-center items-center pb-[0.5vh] rounded-md cursor-pointer bg-indigo-500 zoom-reverse`}
           >
-            <h1 className="text-2xl">+</h1>
+            <h1 className="text-2xl text-white font-bold">+</h1>
           </div>
         </div>
         {/*  */}
@@ -326,9 +325,9 @@ const Step3 = (props) => {
             onClick={() => {
               addInterests()
             }}
-            className={`w-[3vw] mr-auto h-[4vh] border-2 border-black flex flex-row justify-center items-center pb-[0.5vh] rounded-md cursor-pointer`}
+            className={`w-[3vw] mr-auto h-[4vh] border-2 border-black flex flex-row justify-center items-center pb-[0.5vh] rounded-md cursor-pointer bg-indigo-500 zoom-reverse`}
           >
-            <h1 className="text-2xl">+</h1>
+            <h1 className="text-2xl text-white font-bold">+</h1>
           </div>
         </div>
         <div className="flex  flex-wrap items-center w-[51vw] gap-y-[3vh] justify-start gap-x-[2vw]">
@@ -349,9 +348,9 @@ const Step3 = (props) => {
             onClick={() => {
               addLanguages()
             }}
-            className={`w-[3vw] mr-auto h-[4vh] border-2 border-black flex flex-row justify-center items-center pb-[0.5vh] rounded-md cursor-pointer`}
+            className={`w-[3vw] mr-auto h-[4vh] border-2 border-black flex flex-row justify-center items-center pb-[0.5vh] rounded-md cursor-pointer bg-indigo-500 zoom-reverse`}
           >
-            <h1 className="text-2xl">+</h1>
+            <h1 className="text-2xl text-white font-bold">+</h1>
           </div>
         </div>
       </div>

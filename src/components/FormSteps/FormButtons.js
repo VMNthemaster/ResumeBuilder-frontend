@@ -3,8 +3,10 @@ import useState from 'react-usestateref'
 import '../../assets/css/fonts.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-const FormButtons = ({  // login first then only create resume will work
+const FormButtons = ({
+  // login first then only create resume will work
   value,
   setValue,
   inputs,
@@ -14,6 +16,7 @@ const FormButtons = ({  // login first then only create resume will work
   interestInputs,
   languageInputs,
 }) => {
+  const resumeUserId = useSelector((state) => state.resumeUserId)
   const navigate = useNavigate()
   const [flag, setFlag] = useState(0)
   const [projectsArray, setProjectsArray, getProjectsArray] = useState([])
@@ -111,7 +114,7 @@ const FormButtons = ({  // login first then only create resume will work
       }
       setLanguageArray(prevLanguageArray)
     }
-  }, [flag])  // eslint-disable-line react-hooks/exhaustive-deps
+  }, [flag]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const combineData = async () => {
     if (flag === 1) {
@@ -122,8 +125,13 @@ const FormButtons = ({  // login first then only create resume will work
       const languages = getLanguageArray.current
       const res = await axios
         .post('http://localhost:5000/api/resumes/create', {
-          by: sessionStorage.getItem('resumeUserId'),
-          projects,experience,skills,interests,languages,
+          // by: sessionStorage.getItem('resumeUserId'),
+          by: resumeUserId,
+          projects,
+          experience,
+          skills,
+          interests,
+          languages,
           ...inputs,
         })
         .catch((err) => {
@@ -142,7 +150,7 @@ const FormButtons = ({  // login first then only create resume will work
   }
 
   useEffect(() => {
-    if(flag === 1){
+    if (flag === 1) {
       combineData().then((data) => {
         if (data === 500) {
           console.log('internal Server Error')
@@ -153,7 +161,6 @@ const FormButtons = ({  // login first then only create resume will work
     }
     // eslint-disable-next-line
   }, [flag])
-  
 
   return (
     <div className="pt-[3vh]">
@@ -164,11 +171,11 @@ const FormButtons = ({  // login first then only create resume will work
               onClick={handleSubmit}
               className={`${
                 value === 3 ? 'visible' : 'displayNone'
-              } flex justify-center`}
+              } flex justify-center zoom-reverse`}
             >
               <button
                 type="button"
-                className={`fonts w-[10vw] rounded-md h-[5vh] text-2xl bg-gradient-to-r from-purple-500 to-violet-400 hover:bg-gradient-to-l text-white font-bold`}
+                className={`fonts w-[10vw] rounded-md h-[5vh] text-2xl bg-gradient-to-r from-blue-400 to-blue-500 hover:bg-gradient-to-l text-black border-2 border-violet-700`}
               >
                 Submit
               </button>
@@ -177,11 +184,11 @@ const FormButtons = ({  // login first then only create resume will work
           <div
             className={`${
               value === 3 ? 'displayNone' : 'visible'
-            } flex justify-center`}
+            } flex justify-center zoom-reverse`}
           >
             <button
               type="button"
-              className={`fonts w-[10vw] rounded-md h-[5vh] text-2xl bg-gradient-to-r from-purple-500 to-violet-400 hover:bg-gradient-to-l text-white font-bold`}
+              className={`fonts w-[10vw] rounded-md h-[5vh] text-2xl bg-gradient-to-r from-blue-400 to-blue-500 hover:bg-gradient-to-l text-black border-2 border-violet-700`}
               onClick={() => setValue((prevValue) => prevValue + 1)}
             >
               Next
@@ -191,11 +198,11 @@ const FormButtons = ({  // login first then only create resume will work
         <div
           className={`${
             value === 1 ? 'displayNone' : 'visible'
-          } flex justify-center`}
+          } flex justify-center zoom-reverse`}
         >
           <button
             type="button"
-            className={`fonts w-[10vw] rounded-md h-[5vh] text-2xl bg-gradient-to-r from-purple-500 to-violet-400 hover:bg-gradient-to-l text-white font-bold`}
+            className={`fonts w-[10vw] rounded-md h-[5vh] text-2xl bg-gradient-to-r from-blue-400 to-blue-500 hover:bg-gradient-to-l text-black border-2 border-violet-700`}
             onClick={() => setValue((prevValue) => prevValue - 1)}
           >
             Prev

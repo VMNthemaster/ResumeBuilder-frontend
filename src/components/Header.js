@@ -5,11 +5,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../state/index'
-
+ 
 const Header = () => {
   const dispatch = useDispatch()
-  const { logout } = bindActionCreators(actionCreators, dispatch)
+  const { logout,setResumeUserId } = bindActionCreators(actionCreators, dispatch)
   const isNotLoggedIn = useSelector((state) => state.auth)
+  const resumeUserId = useSelector((state) => state.resumeUserId)
   const navigate = useNavigate()
 
   const handleImgClick = () => {
@@ -41,7 +42,7 @@ const Header = () => {
           </h1>
         </div>
       </div>
-      {!isNotLoggedIn && (
+      {resumeUserId && (
         <div className="center-items">
           <div
             onClick={() => navigate('/resumes/create')}
@@ -54,22 +55,23 @@ const Header = () => {
         </div>
       )}
       <div className="flex flex-row items-center  gap-[1vw]">
-        {isNotLoggedIn && (
+        {!resumeUserId && (
           <div
             onClick={() => navigate('/login')}
-            className="flex justify-center py-[0.5vh] w-[5vw] px-[0.75vw] border-2 border-gray-100 rounded-md text-black font-bold fonts text-[1.25rem] bg-gray-100 hover:bg-gray-200 hover:border-gray-200 hover:cursor-pointer"
+            className="flex justify-center py-[0.5vh] w-[5vw] px-[0.75vw] border-2 border-gray-100 rounded-md text-black font-bold fonts text-[1.25rem] bg-gray-100 hover:bg-gray-200 hover:border-gray-200 hover:cursor-pointer zoom-reverse"
           >
             <h1>Login</h1>
           </div>
         )}
-        {!isNotLoggedIn && (
+        {!isNotLoggedIn && resumeUserId && (
           <div
             onClick={() => {
-              sessionStorage.removeItem('resumeUserId')
+              // sessionStorage.removeItem('resumeUserId')
+              setResumeUserId('')
               logout()
               navigate('/login')
             }}
-            className="flex justify-center py-[0.5vh] w-[5vw] px-[0.75vw] border-2 border-gray-100 rounded-md text-black font-bold fonts text-[1.25rem] bg-gray-100 hover:bg-gray-200 hover:border-gray-200 hover:cursor-pointer"
+            className="flex justify-center py-[0.5vh] w-[5vw] px-[0.75vw] border-2 border-gray-100 rounded-md text-black font-bold fonts text-[1.25rem] bg-gray-100 hover:bg-gray-200 hover:border-gray-200 hover:cursor-pointer zoom-reverse"
           >
             <button>Logout</button>
           </div>

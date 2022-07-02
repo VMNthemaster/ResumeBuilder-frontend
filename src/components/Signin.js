@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 
 const Signin = () => {
   const dispatch = useDispatch()
-  const { login } = bindActionCreators(actionCreators, dispatch)
+  const { login, setResumeUserId } = bindActionCreators(actionCreators, dispatch) 
   const navigate = useNavigate()
   const [inputs, setInputs] = useState({
     name: '',
@@ -50,8 +50,9 @@ const Signin = () => {
       } else if (data === 500) {
         setLoginError('Internal Server Error')
       } else {
-        const resumeUserId = data.credentials._id
-        sessionStorage.setItem('resumeUserId', resumeUserId)
+        const id = data.credentials._id
+        // sessionStorage.setItem('resumeUserId', resumeUserId)
+        setResumeUserId(id)
         login()
         navigate('/resumes')
       }
@@ -110,7 +111,7 @@ const Signin = () => {
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <button className="w-[12vw] px-[0.5vw] py-[0.75vh] border-2 border-black rounded-md text-xl bg-gradient-to-r from-blue-300 to-blue-500 hover:bg-gradient-to-l">
+            <button className="w-[12vw] px-[0.5vw] py-[0.75vh] border-2 border-black rounded-md text-xl bg-gradient-to-r from-blue-300 to-blue-500 hover:bg-gradient-to-l zoom-reverse">
               Sign In
             </button>
           </div>
