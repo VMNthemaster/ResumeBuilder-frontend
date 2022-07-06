@@ -13,7 +13,7 @@ const Resumes = () => {
 
   const sendRequestToBackend = async () => {
     const res = await axios
-      .get('http://localhost:5000/api/resumes')
+      .get('https://resumebuildernodejs.herokuapp.com/api/resumes')
       .catch((err) => {
         return {
           data: err.response.status,
@@ -38,7 +38,7 @@ const Resumes = () => {
   const searchResumes = async () => {
     const search = getSearch.current
     const res = await axios
-      .post('http://localhost:5000/api/resumes', {
+      .post('https://resumebuildernodejs.herokuapp.com/api/resumes', {
         search,
       })
       .catch((err) => {

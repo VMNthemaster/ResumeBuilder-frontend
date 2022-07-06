@@ -27,7 +27,7 @@ const Login = () => {
 
   const sendRequestToBackend = async () => {
     const res = await axios
-      .post('http://localhost:5000/api/users/login', {
+      .post('https://resumebuildernodejs.herokuapp.com/api/users/login', {
         email: inputs.email,
         password: inputs.password,
       })

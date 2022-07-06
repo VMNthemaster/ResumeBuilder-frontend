@@ -52,7 +52,7 @@ const CompleteResumeLayout = (props) => {
 
   const sendRequestToBackend = async () => {
     const res = await axios
-      .delete(`http://localhost:5000/api/resumes/${details._id}`)
+      .delete(`https://resumebuildernodejs.herokuapp.com/api/resumes/${details._id}`)
       .catch((err) => {
         return {
           data: err.response.status,

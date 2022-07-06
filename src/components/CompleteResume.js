@@ -11,7 +11,7 @@ const CompleteResume = () => {
 
   const sendRequestToBackend = async () => {
     const res = await axios
-      .get(`http://localhost:5000/api/resumes/${resumeId}`)
+      .get(`https://resumebuildernodejs.herokuapp.com/api/resumes/${resumeId}`)
       .catch((err) => {
         return {
           data: err.response.status,
